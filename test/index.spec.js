@@ -38,6 +38,7 @@ describe('file_system_read_basics', () => {
         ])
             .then(value => {
                 mockFileSystem = value;
+                console.log(mockFileSystem)
                 done();
             })
     });
@@ -45,6 +46,7 @@ describe('file_system_read_basics', () => {
     after((done) => {
         utils.cleanUp(mockFileSystem)
             .then(() => {
+
                 done()
             })
     });
@@ -63,6 +65,7 @@ describe('file_system_read_basics', () => {
         app(currentTestCtx.path)
             .then((result) => {
                 result.should.eql(currentTestCtx.value);
+                console.table(currentTestCtx.value)
                 done()
             });
     });
@@ -71,6 +74,7 @@ describe('file_system_read_basics', () => {
         const currentTestCtx = mockFileSystem[2];
         app(currentTestCtx.path)
             .catch((err) => {
+                console.log(err)
                 err.message.should.eql(currentTestCtx.value);
                 done()
             });
